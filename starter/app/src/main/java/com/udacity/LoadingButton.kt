@@ -135,11 +135,11 @@ class LoadingButton @JvmOverloads constructor(
         setMeasuredDimension(w, h)
     }
 
-    fun startLoading() {
+    fun downloadStarted() {
         buttonState = ButtonState.Loading
     }
 
-    fun completeLoading() {
+    fun downloadCompleted() {
         with(valueAnimator) {
             val fraction = animatedFraction
             cancel()
