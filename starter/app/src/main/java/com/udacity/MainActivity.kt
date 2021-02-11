@@ -81,6 +81,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun download(repository: GitHubRepository) {
+        binding.contentMain.customButton.downloadStarted()
+
         val request = DownloadManager.Request(Uri.parse(repository.url))
             .setTitle(repository.title)
             .setDescription(getString(R.string.app_description))
