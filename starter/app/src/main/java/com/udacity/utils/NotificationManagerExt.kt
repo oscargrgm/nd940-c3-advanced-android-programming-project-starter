@@ -7,9 +7,6 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.udacity.R
 
-private const val TITLE = "Title"
-private const val SUCCESS = "Success"
-
 private const val NOTIFICATION_ID = 1
 private const val REQUEST_CODE = 100
 private const val FLAGS = 0
@@ -21,8 +18,8 @@ fun <T> NotificationManager.sendNotification(
     isSuccessful: Boolean
 ) {
     val contentIntent = Intent(context, destination).apply {
-        putExtra(TITLE, title)
-        putExtra(SUCCESS, isSuccessful)
+        putExtra(EXTRA_TITLE, title)
+        putExtra(EXTRA_SUCCESS, isSuccessful)
     }
 
     val contentPendingIntent = PendingIntent.getActivity(
