@@ -11,7 +11,7 @@
     <string name="notification_button">See details</string>
 
     <string name="button_name">Download</string>
-    <string name="button_loading">Downloading project</string>
+    <string name="button_loading">Downloading…</string>
 
     <string name="download_notification_channel_id">100</string>
     <string name="notification_channel">channel_download</string>
