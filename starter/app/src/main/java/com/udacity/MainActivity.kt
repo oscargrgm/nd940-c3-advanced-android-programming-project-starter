@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         binding.contentMain.customButton.downloadStarted()
 
         val request = DownloadManager.Request(Uri.parse(repository.url))
-            .setTitle(repository.title)
+            .setTitle(repository.getDescription(this))
             .setDescription(getString(R.string.app_description))
             .setRequiresCharging(false)
             .setAllowedOverMetered(true)
