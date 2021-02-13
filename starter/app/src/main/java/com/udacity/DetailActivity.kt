@@ -1,13 +1,17 @@
 package com.udacity
 
+import android.app.NotificationManager
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.udacity.databinding.ActivityDetailBinding
+import com.udacity.utils.EXTRA_ID
 import com.udacity.utils.EXTRA_SUCCESS
 import com.udacity.utils.EXTRA_TITLE
+import com.udacity.utils.cancelNotification
+import com.udacity.utils.cancelNotifications
 
 class DetailActivity : AppCompatActivity() {
 
@@ -19,6 +23,11 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(binding.toolbar)
+
+        if (intent.hasExtra(EXTRA_ID)) {
+            val id = intent.getIntExtra(EXTRA_ID, -1)
+            getSystemService(NotificationManager::class.java).cancelNotification(id)
+        }
 
         if (intent.hasExtra(EXTRA_SUCCESS)) {
             if (intent.getBooleanExtra(EXTRA_SUCCESS, false)) {

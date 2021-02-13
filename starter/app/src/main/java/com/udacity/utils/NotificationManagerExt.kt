@@ -18,6 +18,7 @@ fun <T> NotificationManager.sendNotification(
     isSuccessful: Boolean
 ) {
     val contentIntent = Intent(context, destination).apply {
+        putExtra(EXTRA_ID, NOTIFICATION_ID)
         putExtra(EXTRA_TITLE, title)
         putExtra(EXTRA_SUCCESS, isSuccessful)
     }
@@ -31,22 +32,15 @@ fun <T> NotificationManager.sendNotification(
 
     val buttonPendingIntent: PendingIntent = PendingIntent.getActivity(
         context,
-        REQUEST_CODE,
+        NOTIFICATION_ID,
         contentIntent,
         FLAGS
     )
 
     val builder = NotificationCompat
-        .Builder(
-            context,
-            context.getString(R.string.download_notification_channel_id)
-        )
-        .setContentTitle(
-            context.getString(R.string.notification_title)
-        )
-        .setContentText(
-            context.getString(R.string.notification_description)
-        )
+        .Builder(context, context.getString(R.string.download_notification_channel_id))
+        .setContentTitle(context.getString(R.string.notification_title))
+        .setContentText(context.getString(R.string.notification_description))
         .setContentIntent(contentPendingIntent)
         .setAutoCancel(true)
         .addAction(
@@ -58,6 +52,10 @@ fun <T> NotificationManager.sendNotification(
         .setPriority(NotificationCompat.PRIORITY_HIGH)
 
     notify(NOTIFICATION_ID, builder.build())
+}
+
+fun NotificationManager.cancelNotification(id: Int) {
+    cancel(id)
 }
 
 fun NotificationManager.cancelNotifications() {
